@@ -1,15 +1,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="16dp" android:background="#E6111111">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="DREXIAN  /  STUDENT" android:textColor="#BFFFFFFF" android:textSize="10sp" android:letterSpacing="0.12" android:textStyle="bold" />
-        <TextView android:id="@+id/widget_clock" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="--:--" android:textColor="#FFFFFFFF" android:textSize="21sp" android:fontFamily="sans" />
-    </LinearLayout>
-    <TextView android:id="@+id/widget_date" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MONDAY, 2 NOVEMBER" android:textColor="#99FFFFFF" android:textSize="9sp" android:paddingTop="2dp" />
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#33FFFFFF" android:layout_marginTop="10dp" android:layout_marginBottom="10dp" />
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="NEXT CLASS" android:textColor="#99FFFFFF" android:textSize="9sp" android:letterSpacing="0.15" />
-    <TextView android:id="@+id/widget_next_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Loading timetable…" android:textColor="#FFFFFFFF" android:textSize="17sp" android:textStyle="bold" android:paddingTop="3dp" />
-    <TextView android:id="@+id/widget_next_info" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:textColor="#CCFFFFFF" android:textSize="10sp" android:paddingTop="3dp" />
-    <TextView android:id="@+id/widget_agenda" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:text="" android:textColor="#99FFFFFF" android:textSize="10sp" android:paddingTop="10dp" />
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="TAP TO OPEN DASHBOARD  ↗" android:textColor="#77FFFFFF" android:textSize="8sp" android:gravity="end" />
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#171717">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DREXIAN  /  STUDENT"
+        android:textColor="#BFFFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_clock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="--:--"
+        android:textColor="#FFFFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DATE"
+        android:textColor="#99FFFFFF"
+        android:textSize="10sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="IIUM REGISTERED COURSES"
+        android:textColor="#99FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_next_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="Open app to import"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_next_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:text="Your imported courses will appear here."
+        android:textColor="#CCFFFFFF"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/widget_agenda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="EXAM INFORMATION"
+        android:textColor="#99FFFFFF"
+        android:textSize="10sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:paddingTop="6dp"
+        android:text="TAP TO OPEN DASHBOARD"
+        android:textColor="#77FFFFFF"
+        android:textSize="8sp" />
 </LinearLayout>
