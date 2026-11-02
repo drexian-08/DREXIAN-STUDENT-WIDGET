@@ -5,6 +5,26 @@
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
+        <receiver android:name=".ClockWidgetProvider" android:exported="true" android:label="DREXIAN Clock">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_clock_info"/>
+        </receiver>
+        <receiver android:name=".NextClassWidgetProvider" android:exported="true" android:label="DREXIAN Next Class">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_class_info"/>
+        </receiver>
+        <receiver android:name=".TodayWidgetProvider" android:exported="true" android:label="DREXIAN Today's Classes">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_today_info"/>
+        </receiver>
+        <receiver android:name=".AssignmentWidgetProvider" android:exported="true" android:label="DREXIAN Assignments">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_assignments_info"/>
+        </receiver>
+        <receiver android:name=".ExamWidgetProvider" android:exported="true" android:label="DREXIAN Exam Countdown">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_exams_info"/>
+        </receiver>
         <receiver android:name=".StudentWidgetProvider" android:exported="true" android:label="DREXIAN Student Widget">
             <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/student_widget_info"/>

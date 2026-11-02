@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mini_widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:padding="12dp"
+    android:background="@drawable/widget_glass">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="DREXIAN / TODAY" android:textColor="#99FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
+    <TextView android:id="@+id/mini_primary" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="TODAY'S CLASSES" android:textColor="#FFFFFFFF" android:textSize="18sp" android:textStyle="bold" android:maxLines="2"/>
+    <TextView android:id="@+id/mini_secondary" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingTop="3dp" android:text="Add weekly schedule in app" android:textColor="#DDFFFFFF" android:textSize="10sp" android:maxLines="3"/>
+</LinearLayout>
