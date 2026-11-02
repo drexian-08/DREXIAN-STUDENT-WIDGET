@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
-    android:background="#171717">
+    android:padding="14dp"
+    android:background="@drawable/widget_glass">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DREXIAN  /  STUDENT"
+        android:text="D R E X I A N   /   STUDENT DASHBOARD"
         android:textColor="#BFFFFFFF"
-        android:textSize="10sp"
+        android:textSize="9sp"
         android:textStyle="bold" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="--:--"
         android:textColor="#FFFFFFFF"
-        android:textSize="26sp"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <TextView
@@ -29,51 +29,52 @@
         android:layout_height="wrap_content"
         android:text="DATE"
         android:textColor="#99FFFFFF"
-        android:textSize="10sp" />
+        android:textSize="9sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="IIUM REGISTERED COURSES"
-        android:textColor="#99FFFFFF"
-        android:textSize="10sp"
-        android:textStyle="bold" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:background="#33FFFFFF"/>
 
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="NEXT CLASS" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
     <TextView
         android:id="@+id/widget_next_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
-        android:text="Open app to import"
+        android:paddingTop="3dp"
+        android:text="Loading timetable..."
         android:textColor="#FFFFFFFF"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textStyle="bold" />
-
     <TextView
         android:id="@+id/widget_next_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="3dp"
-        android:text="Your imported courses will appear here."
+        android:paddingTop="2dp"
+        android:text="Time and countdown"
         android:textColor="#CCFFFFFF"
-        android:textSize="11sp" />
-
-    <TextView
-        android:id="@+id/widget_agenda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="EXAM INFORMATION"
-        android:textColor="#99FFFFFF"
         android:textSize="10sp" />
 
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="TODAY'S TIMETABLE" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
     <TextView
+        android:id="@+id/widget_today"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
-        android:paddingTop="6dp"
-        android:text="TAP TO OPEN DASHBOARD"
-        android:textColor="#77FFFFFF"
-        android:textSize="8sp" />
+        android:paddingTop="4dp"
+        android:text="Today's classes"
+        android:textColor="#FFFFFFFF"
+        android:textSize="10sp" />
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="UPCOMING / DEADLINES" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/widget_reminders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="Assignments and exams"
+        android:textColor="#DDFFFFFF"
+        android:textSize="10sp" />
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="end" android:paddingTop="6dp" android:text="TAP TO OPEN FULL DASHBOARD  ↗" android:textColor="#77FFFFFF" android:textSize="8sp"/>
 </LinearLayout>
