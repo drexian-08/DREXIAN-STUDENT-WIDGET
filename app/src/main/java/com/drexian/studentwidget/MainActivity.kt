@@ -26,7 +26,7 @@ class MainActivity : Activity() {
         root.addView(label("Courses: " + (prefs.getString("courses_summary","Not imported") ?: "Not imported"),14f))
         root.addView(label("Exams: " + (prefs.getString("exams_summary","Not imported") ?: "Not imported"),14f))
         root.addView(label("Note: i-Ma'luum course import provides course codes and sections. Actual weekly class times still need to be matched to the official section timetable; this version will not invent class times.",12f,Color.LTGRAY))
-        root.addView(Button(this).apply { text="REFRESH HOME WIDGET"; setOnClickListener { StudentWidgetProvider.updateAll(this@MainActivity) } },LinearLayout.LayoutParams(-1,dp(54)))
+        root.addView(Button(this).apply { text="REFRESH HOME WIDGETS"; setOnClickListener { StudentWidgetProvider.updateAll(this@MainActivity); MiniWidgetRefresh.updateAll(this@MainActivity) } },LinearLayout.LayoutParams(-1,dp(54)))
         setContentView(root)
     }
     @Deprecated("Deprecated in Android")
@@ -37,6 +37,7 @@ class MainActivity : Activity() {
         if(requestCode==101) prefs.edit().putString("courses_json",raw).putString("courses_summary",data.getStringExtra("summary") ?: "Imported").apply()
         if(requestCode==102) prefs.edit().putString("exams_json",raw).putString("exams_summary",data.getStringExtra("summary") ?: "Imported").apply()
         StudentWidgetProvider.updateAll(this)
+        MiniWidgetRefresh.updateAll(this)
         recreate()
     }
 }

@@ -45,16 +45,29 @@ class ClockWidgetProvider : MiniWidgetProvider() {
 class NextClassWidgetProvider : MiniWidgetProvider() {
     override fun layout() = R.layout.widget_next_class
     override fun render(context: Context, views: RemoteViews) {
-        views.setTextViewText(R.id.mini_primary, "NEXT CLASS")
-        views.setTextViewText(R.id.mini_secondary, "Connect your verified timetable in the app")
+        val now = LocalDateTime.now()
+        val next = StudentWidgetProvider.slots.mapNotNull { slot ->
+            val date = java.time.LocalDate.now().with(java.time.temporal.TemporalAdjusters.nextOrSame(slot.day))
+            val start = LocalDateTime.of(date, slot.startTime())
+            val end = LocalDateTime.of(date, slot.endTime())
+            val candidate = if (end.isBefore(now)) start.plusWeeks(1) else start
+            if (candidate.isAfter(now)) slot to candidate else null
+        }.minByOrNull { it.second }
+        views.setTextViewText(R.id.mini_primary, next?.first?.subject ?: "No upcoming class")
+        if (next != null) {
+            val mins = java.time.Duration.between(now, next.second).toMinutes().coerceAtLeast(0)
+            val day = next.second.format(DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH))
+            views.setTextViewText(R.id.mini_secondary, day + " · " + next.first.start + "–" + next.first.end + " · starts in " + (mins / 60) + "h " + (mins % 60) + "m")
+        } else views.setTextViewText(R.id.mini_secondary, "No upcoming class in the saved timetable")
     }
 }
 
 class TodayWidgetProvider : MiniWidgetProvider() {
     override fun layout() = R.layout.widget_today
     override fun render(context: Context, views: RemoteViews) {
-        views.setTextViewText(R.id.mini_primary, "TODAY'S CLASSES")
-        views.setTextViewText(R.id.mini_secondary, "Add your weekly class schedule in the app")
+        val today = StudentWidgetProvider.slots.filter { it.day == LocalDateTime.now().dayOfWeek }.sortedBy { it.startTime() }
+        views.setTextViewText(R.id.mini_primary, if (today.isEmpty()) "No classes today" else today.size.toString() + " classes today")
+        views.setTextViewText(R.id.mini_secondary, today.take(3).joinToString("\n") { it.start + "–" + it.end + "  " + it.subject }.ifBlank { "Enjoy your free day" })
     }
 }
 
@@ -85,5 +98,28 @@ class ExamWidgetProvider : MiniWidgetProvider() {
         }
         views.setTextViewText(R.id.mini_primary, "EXAM COUNTDOWN")
         views.setTextViewText(R.id.mini_secondary, lines.takeIf { it.isNotEmpty() }?.joinToString("\n") ?: "No exams saved yet")
+    }
+}
+
+object MiniWidgetRefresh {
+    fun updateAll(context: Context) {
+        val manager = AppWidgetManager.getInstance(context)
+        val providers = listOf(
+            ClockWidgetProvider::class.java,
+            NextClassWidgetProvider::class.java,
+            TodayWidgetProvider::class.java,
+            AssignmentWidgetProvider::class.java,
+            ExamWidgetProvider::class.java
+        )
+        providers.forEach { type ->
+            val ids = manager.getAppWidgetIds(android.content.ComponentName(context, type))
+            if (ids.isNotEmpty()) {
+                val intent = Intent(context, type).apply {
+                    action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+                }
+                context.sendBroadcast(intent)
+            }
+        }
     }
 }

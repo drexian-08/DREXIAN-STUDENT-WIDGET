@@ -27,7 +27,7 @@ class StudentWidgetProvider : AppWidgetProvider() {
     }
 
     companion object {
-        private val slots = listOf(
+        internal val slots = listOf(
             ClassSlot(DayOfWeek.MONDAY,"Quranic Language","10:00","12:00"),
             ClassSlot(DayOfWeek.MONDAY,"Accounting","14:00","16:00"),
             ClassSlot(DayOfWeek.TUESDAY,"Digital Literacy","08:00","10:00"),
