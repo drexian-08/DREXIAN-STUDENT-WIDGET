@@ -31,7 +31,7 @@
         android:textColor="#99FFFFFF"
         android:textSize="9sp" />
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:background="#33FFFFFF"/>
+    <TextView android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:background="#33FFFFFF" android:text=""/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="NEXT CLASS" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
     <TextView
@@ -52,7 +52,7 @@
         android:textColor="#CCFFFFFF"
         android:textSize="10sp" />
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF"/>
+    <TextView android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF" android:text=""/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="TODAY'S TIMETABLE" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
     <TextView
@@ -64,7 +64,7 @@
         android:textColor="#FFFFFFFF"
         android:textSize="10sp" />
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF"/>
+    <TextView android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="8dp" android:layout_marginBottom="7dp" android:background="#33FFFFFF" android:text=""/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="UPCOMING / DEADLINES" android:textColor="#88FFFFFF" android:textSize="9sp" android:textStyle="bold"/>
     <TextView
