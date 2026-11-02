@@ -3,6 +3,11 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+dependencies {
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
+}
+
+
 android {
     namespace = "com.drexian.studentwidget"
     compileSdk = 35

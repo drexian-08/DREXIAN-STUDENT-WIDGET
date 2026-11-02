@@ -23,6 +23,7 @@ data class ClassSlot(val day: DayOfWeek, val subject: String, val start: String,
 
 class StudentWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, manager: AppWidgetManager, ids: IntArray) {
+        WidgetAutoRefresh.schedule(context)
         ids.forEach { updateOne(context, manager, it) }
     }
 
@@ -71,10 +72,10 @@ class StudentWidgetProvider : AppWidgetProvider() {
                     val mins = java.time.Duration.between(now, next.second).toMinutes().coerceAtLeast(0)
                     val countdown = if (mins >= 60) "${mins / 60}h ${mins % 60}m" else "${mins}m"
                     views.setTextViewText(R.id.widget_next_name, next.first.subject)
-                    views.setTextViewText(R.id.widget_next_info, "${next.first.day.name.lowercase().replaceFirstChar { it.uppercase() }} · ${next.first.start}–${next.first.end} · ${next.first.room}\nSTARTS IN $countdown")
+                    views.setTextViewText(R.id.widget_next_info, "${next.first.day.name.lowercase().replaceFirstChar { it.uppercase() }} · ${next.first.start}–${next.first.end}\nVENUE: ${next.first.room}\nSTARTS IN $countdown")
                 }
 
-                val todayText = if (today.isEmpty()) "No classes scheduled today" else today.joinToString("\n") { "${it.start}–${it.end}  ${it.subject}" }
+                val todayText = if (today.isEmpty()) "No classes scheduled today" else today.joinToString("\n") { "${it.start}–${it.end}  ${it.subject}\n   VENUE: ${it.room}" }
                 views.setTextViewText(R.id.widget_today, todayText)
 
                 val assignments = runCatching { JSONArray(prefs.getString("assignments_json", "[]")) }.getOrDefault(JSONArray())

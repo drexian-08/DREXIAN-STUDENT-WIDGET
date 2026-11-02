@@ -16,6 +16,7 @@ abstract class MiniWidgetProvider : AppWidgetProvider() {
     abstract fun render(context: Context, views: RemoteViews)
 
     override fun onUpdate(context: Context, manager: AppWidgetManager, ids: IntArray) {
+        WidgetAutoRefresh.schedule(context)
         ids.forEach { id ->
             try {
                 val views = RemoteViews(context.packageName, layout())
@@ -57,7 +58,7 @@ class NextClassWidgetProvider : MiniWidgetProvider() {
         if (next != null) {
             val mins = java.time.Duration.between(now, next.second).toMinutes().coerceAtLeast(0)
             val day = next.second.format(DateTimeFormatter.ofPattern("EEE", Locale.ENGLISH))
-            views.setTextViewText(R.id.mini_secondary, day + " · " + next.first.start + "–" + next.first.end + " · starts in " + (mins / 60) + "h " + (mins % 60) + "m")
+            views.setTextViewText(R.id.mini_secondary, day + " · " + next.first.start + "–" + next.first.end + "\nVENUE: " + next.first.room + " · starts in " + (mins / 60) + "h " + (mins % 60) + "m")
         } else views.setTextViewText(R.id.mini_secondary, "No upcoming class in the saved timetable")
     }
 }
@@ -67,7 +68,7 @@ class TodayWidgetProvider : MiniWidgetProvider() {
     override fun render(context: Context, views: RemoteViews) {
         val today = StudentWidgetProvider.slots.filter { it.day == LocalDateTime.now().dayOfWeek }.sortedBy { it.startTime() }
         views.setTextViewText(R.id.mini_primary, if (today.isEmpty()) "No classes today" else today.size.toString() + " classes today")
-        views.setTextViewText(R.id.mini_secondary, today.take(3).joinToString("\n") { it.start + "–" + it.end + "  " + it.subject }.ifBlank { "Enjoy your free day" })
+        views.setTextViewText(R.id.mini_secondary, today.take(3).joinToString("\n") { it.start + "–" + it.end + "  " + it.subject + "\n   " + it.room }.ifBlank { "Enjoy your free day" })
     }
 }
 
@@ -122,4 +123,19 @@ object MiniWidgetRefresh {
             }
         }
     }
+}
+
+
+class WidgetRefreshWorker(context: Context, params: androidx.work.WorkerParameters) : androidx.work.Worker(context, params) {
+ override fun doWork(): androidx.work.ListenableWorker.Result {
+  return try { StudentWidgetProvider.updateAll(applicationContext); MiniWidgetRefresh.updateAll(applicationContext); androidx.work.ListenableWorker.Result.success() }
+  catch (e: Exception) { android.util.Log.e("DrexianAutoRefresh", "Refresh failed", e); androidx.work.ListenableWorker.Result.retry() }
+ }
+}
+
+object WidgetAutoRefresh {
+ fun schedule(context: Context) {
+  val request = androidx.work.PeriodicWorkRequestBuilder<WidgetRefreshWorker>(15, java.util.concurrent.TimeUnit.MINUTES).build()
+  androidx.work.WorkManager.getInstance(context).enqueueUniquePeriodicWork("drexian_widget_auto_refresh", androidx.work.ExistingPeriodicWorkPolicy.UPDATE, request)
+ }
 }
